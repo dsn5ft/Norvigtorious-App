@@ -1,69 +1,30 @@
 package com.os.project.norvigtorious;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
-public class Benchmark extends Activity {
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.benchmark);
-		
-		if(getIntent().getExtras().getString("benchmark").equals("europe")) {
-			pingEurope();
-		}
+public enum Benchmark {
+	
+	STRING_SORTING("Sort 10,000 Strings Alphabetically"),
+	READ_FROM_RAM("Read 1 MB From RAM"),
+	READ_FROM_FLASH("Read 1 MB From Flash Memory"),
+	PACKET_TO_EUROPE("Send Packet to Europe and Back")
+	;
+	
+	final String name;
+	
+	Benchmark(String name) {
+		this.name = name;
 	}
 	
-	public void pingEurope() {
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				try {
-					Process process = new ProcessBuilder()
-					.command("/system/bin/ping", "-c 5", "www.ox.ac.uk")
-					.redirectErrorStream(true)
-					.start();
-
-					try {
-						BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
-
-						String full = "";
-						String line = null;
-						while ((line = in.readLine()) != null) {  
-							full = full + "\n" + line;
-						}
-						
-						String[] temp = full.split("/");
-						final String average = temp[temp.length - 3];
-						
-						runOnUiThread(new Runnable() {
-							public void run() {
-								((ProgressBar) findViewById(R.id.spinner)).setVisibility(View.GONE);
-								((TextView) findViewById(R.id.results)).setText(average + " ms!");							}
-						});
-					}
-					finally {
-						process.destroy();
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}				
+	public String getName() {
+		return name;
+	}
+	
+	public static Benchmark fromName(String name) {
+		for(Benchmark benchmark : values()) {
+			if(name.equals(benchmark.getName())) {
+				return benchmark;
 			}
-		}).start();
-	}
-	
-	@Override
-	public void onBackPressed() {
-		super.onBackPressed();
-		overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
+		}
+		throw new IllegalArgumentException("No Benchmark with name=" + name);
 	}
 
 }

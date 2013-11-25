@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.os.project.norvigtorious.Benchmark"
+            android:name="com.os.project.norvigtorious.BenchmarkSimple"
             android:label="@string/app_name" >
         </activity>
     </application>

@@ -5,11 +5,20 @@
     tools:context=".Benchmark" >
 
     <TextView
-        android:id="@+id/results"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:padding="25dp"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/results"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:textSize="26sp"
         android:textStyle="bold" />
 
@@ -18,7 +27,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:indeterminate="true"
-         />
+        android:indeterminate="true" />
+
+    <Button
+        android:id="@+id/recalculate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="25dp"
+        android:text="Recalculate" />
 
 </RelativeLayout>

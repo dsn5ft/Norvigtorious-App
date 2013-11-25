@@ -1,15 +1,33 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".Home" >
 
     <Button
-       	android:id="@+id/packet_to_europe"
+        android:id="@+id/read_from_ram"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:text="Read 1 MB From RAM" />
+
+    <Button
+        android:id="@+id/read_from_flash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Read 1 MB From Flash Memory" />
+
+    <Button
+        android:id="@+id/sort_strings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sort 10,000 Strings Alphabetically" />
+
+    <Button
+        android:id="@+id/packet_to_europe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Packet To Europe And Back" />
 
-</RelativeLayout>
+</LinearLayout>

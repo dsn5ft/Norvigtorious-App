@@ -15,15 +15,48 @@ public class Home extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home);
 		
+		Button readFromRAM = (Button) findViewById(R.id.read_from_ram);
+		readFromRAM.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				launchBenchmarkSimple(Benchmark.READ_FROM_RAM);
+			}
+		});
+		
+		Button readFromFlash = (Button) findViewById(R.id.read_from_flash);
+		readFromFlash.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				launchBenchmarkSimple(Benchmark.READ_FROM_FLASH);
+			}
+		});
+		
+		Button sortStrings = (Button) findViewById(R.id.sort_strings);
+		sortStrings.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				launchBenchmarkSimple(Benchmark.STRING_SORTING);
+			}
+		});
+		
 		Button packetToEurope = (Button) findViewById(R.id.packet_to_europe);
 		packetToEurope.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(Home.this, com.os.project.norvigtorious.Benchmark.class).putExtra("benchmark", "europe"));
-				overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+				launchBenchmarkSimple(Benchmark.PACKET_TO_EUROPE);
 			}
 		});
+	}
+	
+	public void launchBenchmarkSimple(Benchmark benchmark) {
+		Intent intent = new Intent(Home.this, com.os.project.norvigtorious.BenchmarkSimple.class);
+		intent.putExtra("benchmark", benchmark.getName());
+		startActivity(intent);
+		overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
 	}
 
 	@Override
