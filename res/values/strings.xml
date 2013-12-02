@@ -5,5 +5,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="anim_time">250</string>
+
+    <color name="background_color_1">#CCDEFF</color>
+    <color name="background_color_2">#FFD1B7</color>
+    <color name="text_color">#B31717</color>
     
 </resources>

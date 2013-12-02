@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Home extends Activity {
 	
@@ -23,6 +24,9 @@ public class Home extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home);
+		
+		TextView heading = (TextView) findViewById(R.id.benchmarks);
+		heading.setText(Html.fromHtml("<u>" + heading.getText() + "</u>"));
 				
 		Button viewStatistics = (Button) findViewById(R.id.view_statistics);
 		viewStatistics.setOnClickListener(new OnClickListener() {
@@ -63,9 +67,9 @@ public class Home extends Activity {
 					long average = stat.getAverage();
 					long count = stat.getCount();
 					
-					statistics += "<b><u>" + stat.getName() + "</u></b><br>";
+					statistics += "<br><b><u>" + stat.getName() + "</u></b><br>";
 					statistics += "Average: " + String.format("%,d", average) + " ns<br>";
-					statistics += "Count: " + count + "<br><br>"; 
+					statistics += "Count: " + count + "<br>"; 
 				}
 				
 				new AlertDialog.Builder(context)

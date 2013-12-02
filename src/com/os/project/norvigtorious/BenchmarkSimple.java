@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class BenchmarkSimple extends Activity {
@@ -52,7 +53,7 @@ public class BenchmarkSimple extends Activity {
 
 	public void executeBenchmark() {
 		((ProgressBar) findViewById(R.id.spinner)).setVisibility(View.VISIBLE);
-		((TextView) findViewById(R.id.results)).setText("");
+		((RelativeLayout) findViewById(R.id.results_border)).setVisibility(View.GONE);
 
 		switch (benchmark) {
 		case FIND_VIEW_BY_ID:
@@ -83,6 +84,7 @@ public class BenchmarkSimple extends Activity {
 		runOnUiThread(new Runnable() {
 			public void run() {
 				((ProgressBar) findViewById(R.id.spinner)).setVisibility(View.GONE);
+				((RelativeLayout) findViewById(R.id.results_border)).setVisibility(View.VISIBLE);
 				((TextView) findViewById(R.id.results)).setText(String.format("%,d", nanoTime) + " ns!");
 				DataManager.updateBenchmarkAverage(context, benchmark, nanoTime);
 			}
