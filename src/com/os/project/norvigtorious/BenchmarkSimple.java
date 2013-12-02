@@ -35,7 +35,7 @@ public class BenchmarkSimple extends Activity {
 	}
 	
 	public void initialize() {
-		benchmark = Benchmark.fromName(getIntent().getExtras().getString("benchmark"));
+		benchmark = Benchmark.fromId(getIntent().getExtras().getInt("benchmark_id"));
 
 		TextView title = (TextView) findViewById(R.id.name);
 		title.setText(Html.fromHtml("<u>" + benchmark.getName() + "</u>"));
@@ -79,11 +79,12 @@ public class BenchmarkSimple extends Activity {
 		}
 	}
 	
-	public void setTimeResult(final long time, final String units) {
+	public void setTimeResult(final long nanoTime) {
 		runOnUiThread(new Runnable() {
 			public void run() {
 				((ProgressBar) findViewById(R.id.spinner)).setVisibility(View.GONE);
-				((TextView) findViewById(R.id.results)).setText(String.format("%,d", time) + " " + units + "!");
+				((TextView) findViewById(R.id.results)).setText(String.format("%,d", nanoTime) + " ns!");
+				DataManager.updateBenchmarkAverage(context, benchmark, nanoTime);
 			}
 		});
 	}
@@ -95,7 +96,7 @@ public class BenchmarkSimple extends Activity {
 			time = tryFindViewById();
 		}
 		
-		setTimeResult(time, "ns");
+		setTimeResult(time);
 	}
 	
 	public long tryFindViewById() {
@@ -115,7 +116,7 @@ public class BenchmarkSimple extends Activity {
 		
 		initialize();
 		
-		setTimeResult(end - start, "ns");
+		setTimeResult(end - start);
 	}
 
 	public void stringSorting() {
@@ -140,7 +141,7 @@ public class BenchmarkSimple extends Activity {
 					Collections.sort(list);
 					final long end = System.nanoTime();
 
-					setTimeResult(end - start, "ns");
+					setTimeResult(end - start);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -170,7 +171,7 @@ public class BenchmarkSimple extends Activity {
 
 					file.close();
 
-					setTimeResult(end - start, "ns");
+					setTimeResult(end - start);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -193,7 +194,7 @@ public class BenchmarkSimple extends Activity {
 					}
 				}
 
-				setTimeResult(sum / count, "ns");
+				setTimeResult(sum / count);
 			}
 		}).start();
 	}
@@ -240,7 +241,7 @@ public class BenchmarkSimple extends Activity {
 						String[] temp = full.split("/");
 						final String average = temp[temp.length - 3];
 						
-						setTimeResult((long) Double.parseDouble(average) * 1000000, "ns");
+						setTimeResult((long) Double.parseDouble(average) * 1000000);
 					} finally {
 						process.destroy();
 					}
