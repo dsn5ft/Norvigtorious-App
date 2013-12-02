@@ -1,3 +1,3 @@
 Norvigtorious-App
 =================
-![Alt text](/res/drawable-hdmi/icon.png?raw=true)
+![Alt text](/res/drawable-hdpi/icon.png?raw=true)
