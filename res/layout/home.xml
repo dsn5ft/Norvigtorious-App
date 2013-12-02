@@ -1,33 +1,82 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
+    android:padding="5dp"
     tools:context=".Home" >
 
-    <Button
-        android:id="@+id/read_from_ram"
+    <TextView
+        android:id="@+id/benchmarks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Read 1 MB From RAM" />
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:padding="25dp"
+        android:text="BENCHMARKS"
+        android:textSize="26sp"
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/read_from_flash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Read 1 MB From Flash Memory" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/benchmarks" >
 
-    <Button
-        android:id="@+id/sort_strings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sort 10,000 Strings Alphabetically" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp" >
 
-    <Button
-        android:id="@+id/packet_to_europe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Packet To Europe And Back" />
+            <Button
+                android:id="@+id/find_view_by_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2.5dp"
+                android:text="Find View By ID"
+                android:textStyle="bold" />
 
-</LinearLayout>
+            <Button
+                android:id="@+id/set_content_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2.5dp"
+                android:text="Set Content View"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/read_from_ram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2.5dp"
+                android:text="Read 1 MB From RAM"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/read_from_flash"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2.5dp"
+                android:text="Read 1 MB From Flash Memory"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/sort_strings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2.5dp"
+                android:text="Sort 10,000 Strings Alphabetically"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/packet_to_europe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2.5dp"
+                android:text="Packet To Europe And Back"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

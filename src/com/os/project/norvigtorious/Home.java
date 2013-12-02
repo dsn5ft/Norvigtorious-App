@@ -15,6 +15,24 @@ public class Home extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home);
 		
+		Button findViewById = (Button) findViewById(R.id.find_view_by_id);
+		findViewById.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				launchBenchmarkSimple(Benchmark.FIND_VIEW_BY_ID);
+			}
+		});
+		
+		Button setContentView = (Button) findViewById(R.id.set_content_view);
+		setContentView.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				launchBenchmarkSimple(Benchmark.SET_CONTENT_VIEW);
+			}
+		});
+		
 		Button readFromRAM = (Button) findViewById(R.id.read_from_ram);
 		readFromRAM.setOnClickListener(new OnClickListener() {
 			

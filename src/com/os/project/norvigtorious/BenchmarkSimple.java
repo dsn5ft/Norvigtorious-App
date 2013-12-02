@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.MemoryFile;
+import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -26,13 +27,18 @@ public class BenchmarkSimple extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.benchmark);
+		setContentView(R.layout.benchmark_simple);
 
+		initialize();
+		
+		executeBenchmark();
+	}
+	
+	public void initialize() {
 		benchmark = Benchmark.fromName(getIntent().getExtras().getString("benchmark"));
 
-		((TextView) findViewById(R.id.name)).setText(benchmark.getName());
-
-		executeBenchmark();
+		TextView title = (TextView) findViewById(R.id.name);
+		title.setText(Html.fromHtml("<u>" + benchmark.getName() + "</u>"));
 
 		Button recalculate = (Button) findViewById(R.id.recalculate);
 		recalculate.setOnClickListener(new OnClickListener() {
@@ -49,6 +55,12 @@ public class BenchmarkSimple extends Activity {
 		((TextView) findViewById(R.id.results)).setText("");
 
 		switch (benchmark) {
+		case FIND_VIEW_BY_ID:
+			findViewById();
+			break;
+		case SET_CONTENT_VIEW:
+			setContentView();
+			break;
 		case READ_FROM_RAM:
 			readFromRAM();
 			break;
@@ -65,6 +77,45 @@ public class BenchmarkSimple extends Activity {
 		default:
 			break;
 		}
+	}
+	
+	public void setTimeResult(final long time, final String units) {
+		runOnUiThread(new Runnable() {
+			public void run() {
+				((ProgressBar) findViewById(R.id.spinner)).setVisibility(View.GONE);
+				((TextView) findViewById(R.id.results)).setText(String.format("%,d", time) + " " + units + "!");
+			}
+		});
+	}
+	
+	public void findViewById() {
+		long time = tryFindViewById();
+		
+		while(time == 0) {
+			time = tryFindViewById();
+		}
+		
+		setTimeResult(time, "ns");
+	}
+	
+	public long tryFindViewById() {
+		long start = System.nanoTime();
+		View rootView = findViewById(android.R.id.content);
+		long end = System.nanoTime();
+		
+		rootView.invalidate();
+
+		return end - start;
+	}
+	
+	public void setContentView() {
+		long start = System.nanoTime();
+		setContentView(R.layout.benchmark_simple);
+		long end = System.nanoTime();
+		
+		initialize();
+		
+		setTimeResult(end - start, "ns");
 	}
 
 	public void stringSorting() {
@@ -89,12 +140,7 @@ public class BenchmarkSimple extends Activity {
 					Collections.sort(list);
 					final long end = System.nanoTime();
 
-					runOnUiThread(new Runnable() {
-						public void run() {
-							((ProgressBar) findViewById(R.id.spinner)).setVisibility(View.GONE);
-							((TextView) findViewById(R.id.results)).setText(String.format("%,d", end - start) + " ns!");
-						}
-					});
+					setTimeResult(end - start, "ns");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -124,12 +170,7 @@ public class BenchmarkSimple extends Activity {
 
 					file.close();
 
-					runOnUiThread(new Runnable() {
-						public void run() {
-							((ProgressBar) findViewById(R.id.spinner)).setVisibility(View.GONE);
-							((TextView) findViewById(R.id.results)).setText(String.format("%,d", end - start) + " ns!");
-						}
-					});
+					setTimeResult(end - start, "ns");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -152,14 +193,7 @@ public class BenchmarkSimple extends Activity {
 					}
 				}
 
-				final long average = sum / count;
-
-				runOnUiThread(new Runnable() {
-					public void run() {
-						((ProgressBar) findViewById(R.id.spinner)).setVisibility(View.GONE);
-						((TextView) findViewById(R.id.results)).setText(String.format("%,d", average) + " ns!");
-					}
-				});
+				setTimeResult(sum / count, "ns");
 			}
 		}).start();
 	}
@@ -205,13 +239,8 @@ public class BenchmarkSimple extends Activity {
 
 						String[] temp = full.split("/");
 						final String average = temp[temp.length - 3];
-
-						runOnUiThread(new Runnable() {
-							public void run() {
-								((ProgressBar) findViewById(R.id.spinner)).setVisibility(View.GONE);
-								((TextView) findViewById(R.id.results)).setText(average + " ms!");
-							}
-						});
+						
+						setTimeResult((long) Double.parseDouble(average) * 1000000, "ns");
 					} finally {
 						process.destroy();
 					}

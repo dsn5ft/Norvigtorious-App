@@ -2,6 +2,8 @@ package com.os.project.norvigtorious;
 
 public enum Benchmark {
 	
+	FIND_VIEW_BY_ID("Find View By ID"),
+	SET_CONTENT_VIEW("Set Content View"),
 	STRING_SORTING("Sort 10,000 Strings Alphabetically"),
 	READ_FROM_RAM("Read 1 MB From RAM"),
 	READ_FROM_FLASH("Read 1 MB From Flash Memory"),
