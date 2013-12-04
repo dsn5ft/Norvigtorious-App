@@ -16,5 +16,14 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+    
+    
+    <style name="AppBaseThemeNoTitle" parent="android:Theme.Light.NoTitleBar">
+    </style>
+
+    <style name="AppThemeNoTitle" parent="AppBaseThemeNoTitle">
+    </style>
+    
+    
 
 </resources>

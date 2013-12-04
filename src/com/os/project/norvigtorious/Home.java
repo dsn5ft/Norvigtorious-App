@@ -24,7 +24,7 @@ public class Home extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home);
-		
+				
 		TextView heading = (TextView) findViewById(R.id.benchmarks);
 		heading.setText(Html.fromHtml("<u>" + heading.getText() + "</u>"));
 				
@@ -33,51 +33,10 @@ public class Home extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				List<BenchmarkStatistic> statsList = new ArrayList<BenchmarkStatistic>();
-				
-				for(Benchmark benchmark : Benchmark.values()) {
-					long average = DataManager.getBenchmarkAverage(context, benchmark);
-					long count = DataManager.getBenchmarkCount(context, benchmark);
-					
-					BenchmarkStatistic newStat = new BenchmarkStatistic(count, average, benchmark.getName());
-					
-					if(newStat.getCount() == 0) {
-						statsList.add(newStat);
-					}
-					else {
-						int index = 0;
-						
-						for(BenchmarkStatistic stat : statsList) {
-							if(stat.getCount() == 0) {
-								break;
-							}
-							
-							if(newStat.getAverage() > stat.getAverage()) {
-								index++;
-							}
-						}
-						
-						statsList.add(index, newStat);
-					}
-				}
-				
-				String statistics = "";
-				
-				for(BenchmarkStatistic stat : statsList) {
-					long average = stat.getAverage();
-					long count = stat.getCount();
-					
-					statistics += "<br><b><u>" + stat.getName() + "</u></b><br>";
-					statistics += "Average: " + String.format("%,d", average) + " ns<br>";
-					statistics += "Count: " + count + "<br>"; 
-				}
-				
-				new AlertDialog.Builder(context)
-				.setTitle("Benchmark Statistics")
-				.setMessage(Html.fromHtml(statistics))
-				.setNeutralButton("OK", null)
-				.setIcon(R.drawable.icon_small)
-				.show();
+				Intent intent = new Intent(Home.this, com.os.project.norvigtorious.Webview.class);
+				intent.putExtra("url", "http://plato.cs.virginia.edu/~res6tq/norvigtorious/benchmarkStats/home");
+				startActivity(intent);
+				overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
 			}
 		});
 		
@@ -108,12 +67,48 @@ public class Home extends Activity {
 			}
 		});
 		
+		Button writeToRAM = (Button) findViewById(R.id.write_to_ram);
+		writeToRAM.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				launchBenchmarkSimple(Benchmark.WRITE_TO_RAM);
+			}
+		});
+		
 		Button readFromFlash = (Button) findViewById(R.id.read_from_flash);
 		readFromFlash.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				launchBenchmarkSimple(Benchmark.READ_FROM_FLASH);
+				launchBenchmarkSimple(Benchmark.READ_FROM_INTERNAL_STORAGE);
+			}
+		});
+		
+		Button writeToFlash = (Button) findViewById(R.id.write_to_flash);
+		writeToFlash.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				launchBenchmarkSimple(Benchmark.WRITE_TO_INTERNAL_STORAGE);
+			}
+		});
+		
+		Button readFromSDCard = (Button) findViewById(R.id.read_from_sd_card);
+		readFromSDCard.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				launchBenchmarkSimple(Benchmark.READ_FROM_SD_CARD);
+			}
+		});
+		
+		Button writeToSDCard = (Button) findViewById(R.id.write_to_sd_card);
+		writeToSDCard.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				launchBenchmarkSimple(Benchmark.WRITE_TO_SD_CARD);
 			}
 		});
 		
@@ -123,6 +118,24 @@ public class Home extends Activity {
 			@Override
 			public void onClick(View v) {
 				launchBenchmarkSimple(Benchmark.STRING_SORTING);
+			}
+		});
+		
+		Button encryptData = (Button) findViewById(R.id.encrypt_data);
+		encryptData.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				launchBenchmarkSimple(Benchmark.ENCRYPT_DATA);
+			}
+		});
+		
+		Button decryptData = (Button) findViewById(R.id.decrypt_data);
+		decryptData.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				launchBenchmarkSimple(Benchmark.DECRYPT_DATA);
 			}
 		});
 		
@@ -155,7 +168,9 @@ public class Home extends Activity {
 		case R.id.menu_about:
 			new AlertDialog.Builder(context)
 				.setTitle("About")
-				.setMessage("Developed by...\n\nDaniel Nizri\nAlex Fabian\nRenee Seaman\nCasey Silver")
+				.setMessage("Developed by..." +
+						"\n\nDaniel Nizri\nAlex Fabian\nRenee Seaman\nCasey Silver" +
+						"\n\nInspired by Peter Norvig's \"Teach Yourself Programming in Ten Years\"")
 				.setNeutralButton("OK", null)
 				.setIcon(R.drawable.icon_small)
 				.show();

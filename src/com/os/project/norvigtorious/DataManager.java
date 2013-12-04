@@ -18,7 +18,7 @@ public class DataManager extends Activity {
 		return sharedPrefs.getLong("average_" + benchmark.getId(), 0);
 	}
 	
-	public static void updateBenchmarkAverage(Context context, Benchmark benchmark, long time) {
+	public static void updateBenchmarkAverage(Context context, final Benchmark benchmark, final long time) {
 		long average = getBenchmarkAverage(context, benchmark);
 		long count = getBenchmarkCount(context, benchmark);
 		long sum = average * count;

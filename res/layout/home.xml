@@ -70,11 +70,65 @@
                     android:textStyle="bold" />
 
                 <Button
+                    android:id="@+id/write_to_ram"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2.5dp"
+                    android:text="Write 1 MB To RAM"
+                    android:textColor="@color/text_color"
+                    android:textStyle="bold" />
+
+                <Button
                     android:id="@+id/read_from_flash"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="2.5dp"
-                    android:text="Read 1 MB From Flash Memory"
+                    android:text="Read 1 MB From Internal Storage"
+                    android:textColor="@color/text_color"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/write_to_flash"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2.5dp"
+                    android:text="Write 1 MB To Internal Storage"
+                    android:textColor="@color/text_color"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/read_from_sd_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2.5dp"
+                    android:text="Read 1 MB From SD Card"
+                    android:textColor="@color/text_color"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/write_to_sd_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2.5dp"
+                    android:text="Write 1 MB To SD Card"
+                    android:textColor="@color/text_color"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/encrypt_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2.5dp"
+                    android:text="Encrypt 1 MB of Data"
+                    android:textColor="@color/text_color"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/decrypt_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2.5dp"
+                    android:text="Decrypt 1 MB of Data"
                     android:textColor="@color/text_color"
                     android:textStyle="bold" />
 
@@ -84,42 +138,6 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="2.5dp"
                     android:text="Sort 10,000 Strings"
-                    android:textColor="@color/text_color"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/packet_to_europe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="2.5dp"
-                    android:text="Send Packet To Europe And Back"
-                    android:textColor="@color/text_color"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/packet_to_europe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="2.5dp"
-                    android:text="Send Packet To Europe And Back"
-                    android:textColor="@color/text_color"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/packet_to_europe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="2.5dp"
-                    android:text="Send Packet To Europe And Back"
-                    android:textColor="@color/text_color"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/packet_to_europe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="2.5dp"
-                    android:text="Send Packet To Europe And Back"
                     android:textColor="@color/text_color"
                     android:textStyle="bold" />
 
