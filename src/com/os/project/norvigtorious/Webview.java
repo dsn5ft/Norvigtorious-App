@@ -123,7 +123,7 @@ public class Webview extends Activity {
 					
 					statistics += "<br><b><u>" + stat.getName() + "</u></b><br>";
 					statistics += String.format("%,d", average) + " ns<br>";
-//					statistics += "Count: " + count + "<br>"; 
+//					statistics += "Count: " + count + "<br>";
 				}
 				
 				new AlertDialog.Builder(context)

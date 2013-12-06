@@ -28,6 +28,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.MemoryFile;
 import android.text.Html;
 import android.view.View;
@@ -314,7 +315,7 @@ public class BenchmarkSimple extends Activity {
 					byte[] buffer = new byte[len];
 					is.read(buffer, 0, len);
 					
-					File file = new File("/storage/sdcard1/Megabyte File");
+					File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Megabyte File");
 
 					FileOutputStream f = new FileOutputStream(file);
 					f.write(buffer, 0, len);
@@ -337,7 +338,7 @@ public class BenchmarkSimple extends Activity {
 				
 				InputStream is1 = null;
 				try {
-					is1 = new FileInputStream(new File("/storage/sdcard1/Megabyte File"));
+					is1 = new FileInputStream(new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Megabyte File"));
 					BufferedReader reader = new BufferedReader(new InputStreamReader(is1));
 					int len = 1048586;
 					char[] buffer = new char[len];
@@ -370,7 +371,7 @@ public class BenchmarkSimple extends Activity {
 					byte[] buffer = new byte[len];
 					is.read(buffer, 0, len);
 					
-					File file = new File("/storage/sdcard1/Megabyte File");
+					File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Megabyte File");
 
 					FileOutputStream f = new FileOutputStream(file);
 					
@@ -490,16 +491,6 @@ public class BenchmarkSimple extends Activity {
         cipher.init(Cipher.DECRYPT_MODE, skeySpec);
         byte[] decrypted = cipher.doFinal(encrypted);
         return decrypted;
-    }
-    
-    public static byte[] hexStringToByteArray(String s) {
-        int len = s.length();
-        byte[] data = new byte[len / 2];
-        for (int i = 0; i < len; i += 2) {
-            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
-                                 + Character.digit(s.charAt(i+1), 16));
-        }
-        return data;
     }
 	
 	public void stringSorting() {
