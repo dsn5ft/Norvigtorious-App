@@ -33,33 +33,40 @@ public final class R {
     }
     public static final class id {
         public static final int benchmarks=0x7f090006;
-        public static final int decrypt_data=0x7f090011;
-        public static final int encrypt_data=0x7f090010;
-        public static final int find_view_by_id=0x7f090008;
-        public static final int menu_about=0x7f090016;
+        public static final int decrypt_data=0x7f090012;
+        public static final int encrypt_data=0x7f090011;
+        public static final int find_view_by_id=0x7f090009;
+        public static final int menu_about=0x7f09001c;
         public static final int name=0x7f090001;
-        public static final int packet_to_europe=0x7f090013;
-        public static final int read_from_flash=0x7f09000c;
-        public static final int read_from_ram=0x7f09000a;
-        public static final int read_from_sd_card=0x7f09000e;
+        public static final int packet_to_europe=0x7f090014;
+        public static final int progress_bar=0x7f090018;
+        public static final int read_from_flash=0x7f09000d;
+        public static final int read_from_ram=0x7f09000b;
+        public static final int read_from_sd_card=0x7f09000f;
         public static final int recalculate=0x7f090005;
         public static final int results=0x7f090003;
         public static final int results_border=0x7f090002;
         public static final int root_view=0x7f090000;
-        public static final int set_content_view=0x7f090009;
-        public static final int sort_strings=0x7f090012;
+        public static final int run_all_benchmarks=0x7f090007;
+        public static final int scroll_view=0x7f090019;
+        public static final int set_content_view=0x7f09000a;
+        public static final int sort_strings=0x7f090013;
         public static final int spinner=0x7f090004;
-        public static final int view_my_stats=0x7f090015;
-        public static final int view_statistics=0x7f090007;
-        public static final int webview=0x7f090014;
-        public static final int write_to_flash=0x7f09000d;
-        public static final int write_to_ram=0x7f09000b;
-        public static final int write_to_sd_card=0x7f09000f;
+        public static final int status=0x7f090017;
+        public static final int status_border=0x7f090016;
+        public static final int title=0x7f090015;
+        public static final int view_my_stats=0x7f09001b;
+        public static final int view_statistics=0x7f090008;
+        public static final int webview=0x7f09001a;
+        public static final int write_to_flash=0x7f09000e;
+        public static final int write_to_ram=0x7f09000c;
+        public static final int write_to_sd_card=0x7f090010;
     }
     public static final class layout {
         public static final int benchmark_simple=0x7f030000;
         public static final int home=0x7f030001;
-        public static final int webview=0x7f030002;
+        public static final int run_all_benchmarks=0x7f030002;
+        public static final int webview=0x7f030003;
     }
     public static final class menu {
         public static final int home=0x7f080000;

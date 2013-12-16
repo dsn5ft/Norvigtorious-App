@@ -93,7 +93,7 @@ public class Webview extends Activity {
 					long average = DataManager.getBenchmarkAverage(context, benchmark);
 					long count = DataManager.getBenchmarkCount(context, benchmark);
 					
-					BenchmarkStatistic newStat = new BenchmarkStatistic(count, average, benchmark.getName());
+					BenchmarkStatistic newStat = new BenchmarkStatistic(benchmark, count, average);
 					
 					if(newStat.getCount() == 0) {
 						statsList.add(newStat);
@@ -121,7 +121,7 @@ public class Webview extends Activity {
 					long average = stat.getAverage();
 					long count = stat.getCount();
 					
-					statistics += "<br><b><u>" + stat.getName() + "</u></b><br>";
+					statistics += "<br><b><u>" + stat.getBenchmark().getName() + "</u></b><br>";
 					statistics += String.format("%,d", average) + " ns<br>";
 //					statistics += "Count: " + count + "<br>";
 				}
